@@ -1,0 +1,26 @@
+/* index.css */
+@import url("https://unpkg.com/leaflet@1.7.1/dist/leaflet.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: UberMedium;
+  src: url("/src/assets/fonts/UberMoveMedium.otf");
+}
+
+@font-face {
+  font-family: UberBold;
+  src: url("/src/assets/fonts/UberMoveBold.otf");
+}
+
+* {
+  font-family: UberMedium;
+}
+
+input::placeholder {
+  color: grey;
+  opacity: 1;
+  font-size: 14px;
+}
