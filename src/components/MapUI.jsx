@@ -13,12 +13,12 @@ function MapUI({ sourceLocation, destinationLocation }) {
   const defaultDestination = [28.576191, 77.345787];
   const sourcePosition =
     sourceLocation[0] && sourceLocation[1]
-      ? [sourceLocation[1], sourceLocation[0]]
+      ? [sourceLocation[0], sourceLocation[1]]
       : defaultSource;
 
   const destinationPosition =
     destinationLocation[0] && destinationLocation[1]
-      ? [destinationLocation[1], destinationLocation[0]]
+      ? [destinationLocation[0], destinationLocation[1]]
       : defaultDestination;
 
   const zoomLevel = 13;
