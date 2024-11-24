@@ -24,3 +24,7 @@ input::placeholder {
   opacity: 1;
   font-size: 14px;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
