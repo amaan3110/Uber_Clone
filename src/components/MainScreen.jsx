@@ -123,8 +123,8 @@ const MainScreen = () => {
   return (
     <sourceContext.Provider value={{ source, setSource }}>
       <destinationContext.Provider value={{ destination, setDestination }}>
-        <div className=" grid grid-cols-1 md:grid-cols-3 ">
-          <div className=" w-full p-4">
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="w-full p-4">
             <SearchUI showLocation={showLocation} />
             {ride && <RideAvailable rides={rideAvailable} />}
           </div>

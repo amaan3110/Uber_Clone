@@ -1,6 +1,5 @@
 import React from "react";
 import InputRide from "./InputRide";
-import AutoCompleteMap from "./AutoCompleteMap";
 
 const SearchUI = ({ showLocation }) => {
   return (
@@ -14,7 +13,6 @@ const SearchUI = ({ showLocation }) => {
       >
         See Prices
       </button>
-      <AutoCompleteMap />
     </div>
   );
 };

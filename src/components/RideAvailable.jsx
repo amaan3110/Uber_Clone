@@ -10,7 +10,7 @@ function RideAvailable({ rides }) {
   };
 
   return (
-    <div className="relative w-full h-[53vh] overflow-hidden overflow-y-auto hide-scrollbar">
+    <div className="relative w-full h-72 overflow-hidden overflow-y-scroll hide-scrollbar">
       {rides.map((ride, index) => (
         <div
           key={index}

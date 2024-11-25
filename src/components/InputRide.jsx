@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AutoCompleteMap from "./AutoCompleteMap.jsx";
 import {
   faCircle,
   faSquare,
   faLocationArrow,
 } from "@fortawesome/free-solid-svg-icons";
 import sourceContext from "../Context/SourceContext.js";
-import destinationContext from "../Context/DestinationContext.js";
 import opencage from "opencage-api-client";
 
 const InputRide = ({ type }) => {
   const { source, setSource } = useContext(sourceContext);
-  const { destination, setDestination } = useContext(destinationContext);
-
   const [address, setAddress] = useState("");
 
   const handleInputChange = (e) => {
@@ -21,7 +19,7 @@ const InputRide = ({ type }) => {
 
   useEffect(() => {
     if (address.length > 0) {
-      getCoordinates(address);
+      getSourceCoordinates(address);
     }
   }, [address]);
 
@@ -42,20 +40,17 @@ const InputRide = ({ type }) => {
     }
   };
 
-  const apiKey = "d772a005c6174d5d8a3a3f2af5cf9d45";
-
-  async function getCoordinates(address) {
+  async function getSourceCoordinates(address) {
+    const apiKey = "d772a005c6174d5d8a3a3f2af5cf9d45";
     try {
       const res = await opencage.geocode({ q: address, key: apiKey });
       const lat = res.results[0].geometry.lat;
       const lng = res.results[0].geometry.lng;
-      setDestination([lat, lng]);
+      setSource([lat, lng]);
     } catch (error) {
       console.error(error);
     }
   }
-
-  // getCoordinates("Sector 52, Noida, UP");
 
   return (
     <div className="flex items-center gap-2 bg-slate-300 px-3 py-0 rounded-lg mt-3">
@@ -65,12 +60,18 @@ const InputRide = ({ type }) => {
         <FontAwesomeIcon icon={faSquare} />
       )}
 
-      <input
-        type="text"
-        className="w-full p-1 outline-none bg-transparent rounded my-2"
-        placeholder={type == "source" ? "Pickup Location" : "DropOff Location"}
-        onChange={handleInputChange}
-      />
+      {type === "source" ? (
+        <input
+          type="text"
+          className="w-full p-1 outline-none bg-transparent rounded my-2"
+          placeholder={
+            type == "source" ? "Pickup Location" : "DropOff Location"
+          }
+          onChange={handleInputChange}
+        />
+      ) : (
+        <AutoCompleteMap />
+      )}
 
       {type === "source" && (
         <button
