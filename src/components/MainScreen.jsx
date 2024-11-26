@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getDistance } from "geolib";
 import SearchUI from "./SearchUI";
 import MapUI from "./MapUI";
 import sourceContext from "../Context/SourceContext";
@@ -16,42 +17,29 @@ import UberComfort_Green from "../assets/UberComfort_Green.png";
 const MainScreen = () => {
   const [source, setSource] = useState([null, null]);
   const [destination, setDestination] = useState([null, null]);
+  const [price, setPrice] = useState("");
   const [ride, setRide] = useState(false);
-
-  const price = calculateDistance(
-    source[0],
-    source[1],
-    destination[0],
-    destination[1]
-  );
 
   const showLocation = () => {
     console.log("Source:", source);
     console.log("Destination:", destination);
     setRide(true);
-    console.log(price);
+    const km = calculateDistance(
+      source[0],
+      source[1],
+      destination[0],
+      destination[1]
+    );
+    console.log(km);
+    setPrice(km);
   };
 
   function calculateDistance(lat1, lon1, lat2, lon2) {
-    const toRadians = (degree) => (degree * Math.PI) / 180;
+    const coord1 = { latitude: lat1, longitude: lon1 };
+    const coord2 = { latitude: lat2, longitude: lon2 };
 
-    const R = 6371;
-    const dLat = toRadians(lat2 - lat1);
-    const dLon = toRadians(lon2 - lon1);
-    const radLat1 = toRadians(lat1);
-    const radLat2 = toRadians(lat2);
-
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(radLat1) *
-        Math.cos(radLat2) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    const distance = R * c;
-    return distance;
+    const distance = getDistance(coord1, coord2);
+    return distance / 1000;
   }
 
   const rideAvailable = [
@@ -60,7 +48,7 @@ const MainScreen = () => {
       name: "Moto",
       price: 22.49,
       discount: "50% off",
-      actualPrice: 45.13,
+      actualPrice: (price * 7).toFixed(2),
       tag: "Affordable, motorcycle rides",
     },
     {
@@ -68,7 +56,7 @@ const MainScreen = () => {
       name: "Uber Auto",
       price: 76.07,
       discount: "50% off",
-      actualPrice: 106.75,
+      actualPrice: (price * 11).toFixed(2),
       tag: "",
     },
     {
@@ -76,7 +64,7 @@ const MainScreen = () => {
       name: "Uber Go",
       price: 99.04,
       discount: "25% off",
-      actualPrice: 132.06,
+      actualPrice: (price * 13).toFixed(2),
       tag: "Affordable compact rides",
     },
     {
@@ -84,7 +72,7 @@ const MainScreen = () => {
       name: "Go Sedan",
       price: 115.25,
       discount: "25% off",
-      actualPrice: 153.93,
+      actualPrice: (price * 19).toFixed(2),
       tag: "Affordable sedans",
     },
     {
@@ -92,7 +80,7 @@ const MainScreen = () => {
       name: "Premier",
       price: 122.72,
       discount: "25% off",
-      actualPrice: 163.63,
+      actualPrice: (price * 25).toFixed(2),
       tag: "Comfortable sedans, top-quality drivers",
     },
     {
@@ -100,7 +88,7 @@ const MainScreen = () => {
       name: "Uber Green",
       price: 153.22,
       discount: "25% off",
-      actualPrice: 204.29,
+      actualPrice: (price * 22).toFixed(2),
       tag: "Go green",
     },
     {
@@ -108,7 +96,7 @@ const MainScreen = () => {
       name: "UberXL",
       price: 189.07,
       discount: "25% off",
-      actualPrice: 252.1,
+      actualPrice: (price * 29).toFixed(2),
       tag: "Comfortable SUVs",
     },
     {
@@ -116,7 +104,7 @@ const MainScreen = () => {
       name: "Uber Shuttle",
       price: 151.43,
       discount: "25% off",
-      actualPrice: 201.64,
+      actualPrice: (price * 20).toFixed(2),
       tag: "Shared rides, lowest cost",
     },
   ];

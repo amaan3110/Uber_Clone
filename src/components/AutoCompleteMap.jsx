@@ -19,6 +19,11 @@ const customStyles = {
   }),
 };
 
+const customComponents = {
+  DropdownIndicator: () => null,
+  IndicatorSeparator: () => null,
+};
+
 const AutoCompleteMap = () => {
   const [options, setOptions] = useState([]);
   const { destination, setDestination } = useContext(destinationContext);
@@ -63,6 +68,7 @@ const AutoCompleteMap = () => {
         options={options}
         placeholder="DropOff Location"
         styles={customStyles}
+        components={customComponents}
         isClearable
       />
     </div>

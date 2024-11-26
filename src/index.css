@@ -28,3 +28,11 @@ input::placeholder {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.css-hlgwow {
+  padding: 0 !important;
+}
+
+.css-1cpt4ab-placeholder {
+  margin: 0 !important;
+}
