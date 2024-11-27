@@ -8,7 +8,6 @@ import opencage from "opencage-api-client";
 const InputRide = ({ type }) => {
   const { source, setSource } = useContext(sourceContext);
   const [address, setAddress] = useState("");
-  const [location, setLocation] = useState("");
   const apiKey = "d772a005c6174d5d8a3a3f2af5cf9d45";
 
   const handleInputChange = (e) => {
@@ -31,11 +30,11 @@ const InputRide = ({ type }) => {
             .then((adr) => {
               console.log(adr);
 
-              setLocation(adr);
+              setAddress(adr);
             })
             .catch((error) => {
               console.error("Error fetching address:", error);
-              setLocation("Unable to fetch address");
+              setAddress("Unable to fetch address");
             });
         },
         (error) => {
@@ -110,7 +109,7 @@ const InputRide = ({ type }) => {
       {type === "source" ? (
         <input
           type="text"
-          value={location}
+          value={address}
           className="w-full p-1 outline-none bg-transparent rounded my-2"
           placeholder={
             type == "source" ? "Pickup Location" : "DropOff Location"

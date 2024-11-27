@@ -31,7 +31,7 @@ function RideAvailable({ rides }) {
               <FontAwesomeIcon icon={faTag} />
               {ride.discount}
             </p>
-            <p className="text-2xl font-semibold">₹{ride.price.toFixed(2)}</p>
+            <p className="text-2xl font-semibold">₹{ride.price}</p>
             <p className="text-[16px] text-[#5e5e5e] line-through">
               ₹{ride.actualPrice}
             </p>

@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  Polyline,
-} from "react-leaflet";
+import React from "react";
+import { MapContainer, TileLayer, Marker, Polyline } from "react-leaflet";
 import { Icon } from "leaflet";
+import sourceMarker from "../assets/sourceMarker.png";
+import destinationMarker from "../assets/destinationMarker.png";
 
 function MapUI({ sourceLocation, destinationLocation }) {
   const defaultSource = [28.586729, 77.371452];
@@ -23,11 +19,13 @@ function MapUI({ sourceLocation, destinationLocation }) {
 
   const zoomLevel = 13;
 
-  const locationIcon = new Icon({
-    iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-    iconSize: [20, 31],
-    iconAnchor: [12, 41],
-    popupAnchor: [0, -41],
+  const sourceIcon = new Icon({
+    iconUrl: sourceMarker,
+    iconSize: [30, 30],
+  });
+  const destinationIcon = new Icon({
+    iconUrl: destinationMarker,
+    iconSize: [30, 30],
   });
 
   const pathPositions = [sourcePosition, destinationPosition];
@@ -40,15 +38,10 @@ function MapUI({ sourceLocation, destinationLocation }) {
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        <Marker position={sourcePosition} icon={locationIcon}>
-          <Popup>Source Location</Popup>
-        </Marker>
+        <Marker position={sourcePosition} icon={sourceIcon} />
+        <Marker position={destinationPosition} icon={destinationIcon} />
 
-        <Marker position={destinationPosition} icon={locationIcon}>
-          <Popup>Destination Location</Popup>
-        </Marker>
-
-        <Polyline positions={pathPositions} color="blue" />
+        <Polyline positions={pathPositions} color="black" />
       </MapContainer>
     </div>
   );

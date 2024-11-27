@@ -46,7 +46,7 @@ const MainScreen = () => {
     {
       img: Uber_Moto,
       name: "Moto",
-      price: 22.49,
+      price: ((price * 7 * 50) / 100).toFixed(2),
       discount: "50% off",
       actualPrice: (price * 7).toFixed(2),
       tag: "Affordable, motorcycle rides",
@@ -54,7 +54,7 @@ const MainScreen = () => {
     {
       img: Uber_Auto,
       name: "Uber Auto",
-      price: 76.07,
+      price: ((price * 11 * 50) / 100).toFixed(2),
       discount: "50% off",
       actualPrice: (price * 11).toFixed(2),
       tag: "",
@@ -62,7 +62,7 @@ const MainScreen = () => {
     {
       img: Uber_Go,
       name: "Uber Go",
-      price: 99.04,
+      price: (price * 13 - (price * 13 * 25) / 100).toFixed(2),
       discount: "25% off",
       actualPrice: (price * 13).toFixed(2),
       tag: "Affordable compact rides",
@@ -70,7 +70,7 @@ const MainScreen = () => {
     {
       img: Uber_Sedan,
       name: "Go Sedan",
-      price: 115.25,
+      price: (price * 19 - (price * 19 * 25) / 100).toFixed(2),
       discount: "25% off",
       actualPrice: (price * 19).toFixed(2),
       tag: "Affordable sedans",
@@ -78,7 +78,7 @@ const MainScreen = () => {
     {
       img: Uber_Premier,
       name: "Premier",
-      price: 122.72,
+      price: (price * 25 - (price * 25 * 25) / 100).toFixed(2),
       discount: "25% off",
       actualPrice: (price * 25).toFixed(2),
       tag: "Comfortable sedans, top-quality drivers",
@@ -86,7 +86,7 @@ const MainScreen = () => {
     {
       img: UberComfort_Green,
       name: "Uber Green",
-      price: 153.22,
+      price: (price * 22 - (price * 22 * 25) / 100).toFixed(2),
       discount: "25% off",
       actualPrice: (price * 22).toFixed(2),
       tag: "Go green",
@@ -94,7 +94,7 @@ const MainScreen = () => {
     {
       img: Uber_XL,
       name: "UberXL",
-      price: 189.07,
+      price: (price * 29 - (price * 29 * 25) / 100).toFixed(2),
       discount: "25% off",
       actualPrice: (price * 29).toFixed(2),
       tag: "Comfortable SUVs",
@@ -102,7 +102,7 @@ const MainScreen = () => {
     {
       img: Uber_Shuttle,
       name: "Uber Shuttle",
-      price: 151.43,
+      price: (price * 20 - (price * 20 * 25) / 100).toFixed(2),
       discount: "25% off",
       actualPrice: (price * 20).toFixed(2),
       tag: "Shared rides, lowest cost",
