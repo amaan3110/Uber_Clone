@@ -19,6 +19,10 @@
   font-family: UberMedium;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 input::placeholder {
   color: grey;
   opacity: 1;

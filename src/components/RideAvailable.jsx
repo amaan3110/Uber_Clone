@@ -1,20 +1,27 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
+import Popup from "./Popup";
 
 function RideAvailable({ rides }) {
   const [selectedRide, setSelectedRide] = useState(0);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleClick = (rideIndex) => {
     setSelectedRide(rideIndex);
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
   };
 
   return (
-    <div className="relative w-full h-72 overflow-hidden overflow-y-scroll hide-scrollbar">
+    <div className="relative w-full h-auto">
       {rides.map((ride, index) => (
         <div
           key={index}
-          className={`w-full flex items-center justify-between ${
+          className={`w-full flex items-center flex-col lg:flex-row max-sm:flex-row justify-between ${
             selectedRide === index ? "border-[3px] border-black" : ""
           } rounded-lg my-2 px-2 py-1 cursor-pointer`}
           onClick={() => handleClick(index)}
@@ -38,6 +45,14 @@ function RideAvailable({ rides }) {
           </div>
         </div>
       ))}
+
+      {isPopupOpen && (
+        <Popup
+          rides={rides}
+          selectedRide={selectedRide}
+          closePopup={closePopup}
+        />
+      )}
     </div>
   );
 }

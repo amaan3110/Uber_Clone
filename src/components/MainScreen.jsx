@@ -6,6 +6,7 @@ import sourceContext from "../Context/SourceContext";
 import destinationContext from "../Context/DestinationContext";
 import RideAvailable from "./RideAvailable";
 import Uber_Moto from "../assets/Uber_Moto.png";
+import Moto_Lite from "../assets/Uber_Moto_Lite.png";
 import Uber_Auto from "../assets/Uber_Auto.png";
 import Uber_Go from "../assets/Uber_Go.png";
 import Uber_Premier from "../assets/Uber_Premier.png";
@@ -46,10 +47,18 @@ const MainScreen = () => {
     {
       img: Uber_Moto,
       name: "Moto",
+      price: ((price * 9 * 50) / 100).toFixed(2),
+      discount: "50%off",
+      actualPrice: (price * 9).toFixed(2),
+      tag: "Affordable, motorcycle rides",
+    },
+    {
+      img: Moto_Lite,
+      name: "Moto Lite",
       price: ((price * 7 * 50) / 100).toFixed(2),
       discount: "50% off",
       actualPrice: (price * 7).toFixed(2),
-      tag: "Affordable, motorcycle rides",
+      tag: "Moto EV",
     },
     {
       img: Uber_Auto,
@@ -112,11 +121,11 @@ const MainScreen = () => {
     <sourceContext.Provider value={{ source, setSource }}>
       <destinationContext.Provider value={{ destination, setDestination }}>
         <div className="grid grid-cols-1 md:grid-cols-3">
-          <div className="w-full p-4">
+          <div className="w-full p-4 order-2 md:order-1 h-screen overflow-y-auto hide-scrollbar">
             <SearchUI showLocation={showLocation} />
             {ride && <RideAvailable rides={rideAvailable} />}
           </div>
-          <div className="w-full col-span-2 p-4">
+          <div className="w-full col-span-2 p-4 order-1 md:order-2">
             <MapUI sourceLocation={source} destinationLocation={destination} />
           </div>
         </div>

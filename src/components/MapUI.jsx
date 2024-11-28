@@ -30,7 +30,7 @@ function MapUI({ sourceLocation, destinationLocation }) {
 
   const pathPositions = [sourcePosition, destinationPosition];
   return (
-    <div className="w-full h-[85vh]">
+    <div className="w-full h-[50vh] md:h-[100vh]">
       <MapContainer
         center={sourcePosition}
         zoom={zoomLevel}

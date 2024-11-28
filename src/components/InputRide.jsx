@@ -124,7 +124,7 @@ const InputRide = ({ type }) => {
         <button
           type="button"
           onClick={getCurrentLocation}
-          className="flex items-center justify-center w-[36px] h-[30px] rounded-full bg-blue-500 text-white"
+          className=" text-black mr-1 text-xl"
         >
           <FontAwesomeIcon icon={faLocationArrow} />
         </button>
